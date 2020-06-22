@@ -9,12 +9,16 @@ export class Cat extends Component {
   render() {
 
     const {
+      submitted,
+      waiting,
       cats,
       handleAdoptAnimal
     } = this.context;
-    const current = cats.first.data;
+    const current = cats.first ? cats.first.data : {}
 
     return (
+
+      
       <div>
         <h3>Cat</h3>
         <img className='picture' src={`${current.imageURL}`}/>
@@ -25,6 +29,7 @@ export class Cat extends Component {
         <p>Breed: {`${current.breed}`}</p>
         <p>{`${current.name}`}'s Story: {`${current.story}`}</p>
         <button
+        disabled={(waiting)}
         onClick={(e) => {
           e.preventDefault();
           handleAdoptAnimal('cat');}}

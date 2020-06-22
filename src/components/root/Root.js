@@ -14,6 +14,9 @@ export class Root extends Component {
     cats: new Queue(),
     dogs: new Queue(),
     people: new Queue(),
+    submitted: false,
+    waiting: true,
+    savedName: '',
     na: {value: '', touched: false}
   }
 
@@ -21,30 +24,46 @@ export class Root extends Component {
     apiService.getPets()
       .then(data => {
         let cData = data.cats.first;
-        this.setState(this.state.cats.enqueue(cData.data))
+        let cQueue = new Queue();
+        cQueue.enqueue(cData.data)
+        
         let nc = cData.next;
         while(nc) {
-          this.setState(this.state.cats.enqueue(nc.data))
+          cQueue.enqueue(nc.data)
           nc = nc.next
         }
+        this.setState({cats: cQueue})
+
+
         let dData = data.dogs.first;
-        this.setState(this.state.dogs.enqueue(dData.data))
+        let dQueue = new Queue();
+        dQueue.enqueue(dData.data)
+        
         let nd = dData.next;
         while(nd) {
-          this.setState(this.state.dogs.enqueue(nd.data))
+          dQueue.enqueue(nd.data)
           nd = nd.next
         }
+        this.setState({dogs: dQueue})
       })
     
     apiService.getPeople()
       .then(data => {
+        if (data.first){
         let pData = data.first;
-        this.setState(this.state.people.enqueue(pData.data))
+        let pQueue = new Queue();
+        pQueue.enqueue(pData.data)
+        
         let np = pData.next;
         while(np) {
-          this.setState(this.state.people.enqueue(np.data))
+          pQueue.enqueue(np.data)
           np = np.next
         }
+        this.setState({people: pQueue, na: {value: '', touched: false}})
+      } else {
+        let pQueue = new Queue()
+        this.setState({people: pQueue, na: {value: '', touched: false}})
+      }
       })
   }
 
@@ -61,10 +80,44 @@ export class Root extends Component {
 
   
 
-  handleUpdatePeople = () => {
-    const n = this.state.na.value;
+  handleUpdatePeople = (n) => {
+    
+    
     apiService.postPerson(n)
-      .then((people) => this.setState(this.state.people.enqueue(people.last)));
+      .then(data => {
+        let pData = data.first;
+        let pQueue = new Queue();
+        pQueue.enqueue(pData.data)
+        
+        let np = pData.next;
+        while(np) {
+          pQueue.enqueue(np.data)
+          np = np.next
+        }
+        this.setState({people: pQueue})
+      });
+
+    this.setState({waiting: true, submitted: true, savedName: n});
+  }
+
+  handleWaiting = () => {
+    this.setState({waiting: false})
+  }
+
+  peoplePush = () => {
+    const current = this.state.people.first.data;
+    if (current !== this.state.savedName) {
+      this.handleDeletePerson();
+    } else {
+      this.handleWaiting();
+    }
+  }
+
+  handleDeletePerson = () => {
+    apiService.deletePerson()
+    this.state.people.dequeue();
+    const queue = this.state.people;
+    this.setState({people: queue})
   }
 
 
@@ -76,9 +129,14 @@ export class Root extends Component {
         dogs: this.state.dogs,
         people: this.state.people,
         name: this.state.na,
+        submitted: this.state.submitted,
+        waiting: this.state.waiting,
+        savedName: this.state.savedName,
         validateName: this.validateName,
         setName: this.setName,
         handleUpdatePeople: this.handleUpdatePeople,
+        peoplePush: this.peoplePush,
+        handleWaiting: this.handleWaiting,
         handleAdoptAnimal: this.handleAdoptAnimal,
         handleDeletePerson: this.handleDeletePerson
       }}>

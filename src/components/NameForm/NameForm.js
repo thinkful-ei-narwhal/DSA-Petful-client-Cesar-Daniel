@@ -9,7 +9,7 @@ export class NameForm extends Component {
   render() {
     const {
       name,
-      updateName,
+      setName,
       handleUpdatePeople,
       validateName,
     } = this.context;
@@ -18,15 +18,15 @@ export class NameForm extends Component {
     return (
       <form>
         {name.touched && <ValidationError message={nameError} />}
-        <label htmlFor='name'>name:</label>
+        <label htmlFor='name'>Name:</label>
         <input type= 'text' name='name' id= 'name' value={name.value}
-        onChange={(e) => updateName(e.target.value)}>
+        onChange={(e) => setName(e.target.value)}>
         </input>
     
         <button type= 'submit' disabled={validateName()}
         onClick={(e) => {
           e.preventDefault();
-          handleUpdatePeople();
+          handleUpdatePeople(name.value);
         }}>
           Submit
         </button>

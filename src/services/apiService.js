@@ -26,7 +26,6 @@ const apiService = {
     return fetch(`${config.API_ENDPOINT}/pets/${type}`, {
       method: 'DELETE',
       headers: {
-        'content-type': 'application/json',
       },
       })
       .then(res => {
@@ -71,7 +70,7 @@ const apiService = {
       },
       body: JSON.stringify({
         name: n
-      }),
+      })
     })
       .then(res =>
         (!res.ok)
@@ -82,17 +81,10 @@ const apiService = {
 
   deletePerson() {
     let error;
-    return fetch(`${config.API_ENDPOINT}/pets`, {
+    return fetch(`${config.API_ENDPOINT}/people`, {
       method: 'DELETE',
       headers: {
-        'content-type': 'application/json',
       },
-      })
-      .then(res => {
-        if (!res.ok) {
-          error = { code: res.status};
-        }
-        return res.json();
       })
       .then(data => {
         if (error) {
