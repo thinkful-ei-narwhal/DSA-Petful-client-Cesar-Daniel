@@ -1,1 +1,4 @@
-# DSA-Petful-client-Cesar-Daniel
+# DSA-Petful
+For EI petful project - React, Node, DSA
+
+
