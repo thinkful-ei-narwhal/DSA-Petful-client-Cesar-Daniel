@@ -1,5 +1,4 @@
-import React, { Component, Fragment } from 'react';
-import {Link} from 'react-router-dom';
+import React, { Component} from 'react';
 import UserContext from '../../contexts/UserContext';
 
 export class Cat extends Component {
@@ -9,10 +8,9 @@ export class Cat extends Component {
   render() {
 
     const {
-      submitted,
       waiting,
       cats,
-      handleAdoptAnimal
+      handleAdoptAnimal,
     } = this.context;
     const current = cats.first ? cats.first.data : {}
 
@@ -21,7 +19,7 @@ export class Cat extends Component {
       
       <div>
         <h3>Cat</h3>
-        <img className='picture' src={`${current.imageURL}`}/>
+        <img className='picture' alt="cute cat" src={`${current.imageURL}`}/>
         <p>Name: {`${current.name}`}</p>
         <p>Description: {`${current.description}`}</p>
         <p>Gender: {`${current.gender}`}</p>
@@ -32,7 +30,8 @@ export class Cat extends Component {
         disabled={(waiting)}
         onClick={(e) => {
           e.preventDefault();
-          handleAdoptAnimal('cat');}}
+          handleAdoptAnimal('cat');
+        }}
         >Adopt Me!</button>
       </div>
     )

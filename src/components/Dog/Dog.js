@@ -1,5 +1,4 @@
-import React, { Component, Fragment } from 'react';
-import {Link} from 'react-router-dom';
+import React, { Component} from 'react';
 import UserContext from '../../contexts/UserContext';
 
 export class Dog extends Component {
@@ -9,7 +8,6 @@ export class Dog extends Component {
   render() {
 
     const {
-      submitted,
       waiting,
       dogs,
       handleAdoptAnimal
@@ -19,7 +17,7 @@ export class Dog extends Component {
     return (
       <div>
         <h3>Dog</h3>
-        <img className='picture' src={`${current.imageURL}`}/>
+        <img className='picture' alt="cute dog" src={`${current.imageURL}` }/>
         <p>Name: {`${current.name}`}</p>
         <p>Description: {`${current.description}`}</p>
         <p>Gender: {`${current.gender}`}</p>

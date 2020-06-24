@@ -120,6 +120,20 @@ export class Root extends Component {
     this.setState({people: queue})
   }
 
+  handleAdoptAnimal = (animal) => {
+    if(animal==='cat'){
+      apiService.deleteCat()
+      this.state.cats.dequeue();
+      const queue = this.state.cats;
+      this.setState({cats: queue})
+    }else{
+      apiService.deleteDog()
+      this.state.dogs.dequeue();
+      const queue = this.state.dogs;
+      this.setState({dogs: queue})
+    }
+  }
+
 
 
   render() {

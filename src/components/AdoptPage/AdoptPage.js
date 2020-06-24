@@ -1,11 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import {Link} from 'react-router-dom';
 import Cat from '../Cat/Cat';
 import Dog from '../Dog/Dog';
 import NameForm from '../NameForm/NameForm';
 import Countdown from '../Countdown/countdown';
 import UserContext from '../../contexts/UserContext';
-import countdown from '../Countdown/countdown';
 
 export class AdoptPage extends Component {
 

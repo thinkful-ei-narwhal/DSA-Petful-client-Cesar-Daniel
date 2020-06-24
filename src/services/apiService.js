@@ -93,6 +93,32 @@ const apiService = {
         }
         return data})
   },
+  deleteCat() {
+    let error;
+    return fetch(`${config.API_ENDPOINT}/pets/cat`, {
+      method: 'DELETE',
+      headers: {},
+      })
+      .then(data => {
+        if (error) {
+          error.message = data.message;
+          return Promise.reject(error);
+        }
+        return data})
+  },
+  deleteDog() {
+    let error;
+    return fetch(`${config.API_ENDPOINT}/pets/dog`, {
+      method: 'DELETE',
+      headers: {},
+      })
+      .then(data => {
+        if (error) {
+          error.message = data.message;
+          return Promise.reject(error);
+        }
+        return data})
+  },
 }
 
 export default apiService;
