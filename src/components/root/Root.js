@@ -81,24 +81,22 @@ export class Root extends Component {
   
 
   handleUpdatePeople = (n) => {
-    apiService.postPerson(n)//post call is crashing
+    
+    
+    apiService.postPerson(n)
       .then(data => {
-        console.log('ran')//doest get here
-        console.log(data)
         let pData = data.first;
         let pQueue = new Queue();
         pQueue.enqueue(pData.data)
         
         let np = pData.next;
-        console.log(pData.next)
         while(np) {
           pQueue.enqueue(np.data)
           np = np.next
-          
         }
         this.setState({people: pQueue})
       });
-    //skips to here
+
     this.setState({waiting: true, submitted: true, savedName: n});
   }
 
@@ -125,7 +123,6 @@ export class Root extends Component {
 
 
   render() {
-    
     return (
       <UserContext.Provider value = {{
         cats: this.state.cats,

@@ -19,7 +19,6 @@ export class AdoptPage extends Component {
       submitted
     } = this.context;
 
-    
     return (
       <Fragment>
         <h1>Petful - Adopt!</h1>
@@ -30,12 +29,11 @@ export class AdoptPage extends Component {
         <NameForm/>
         {submitted && waiting ? <Countdown/> : null}
         {!waiting ? <p>It's your turn!  You can now adopt!</p> : null}
-        {submitted && waiting ? 
         <div className="pet-container">
           <Cat/>
           <Dog/>
         </div>
-        : null}
+        
 
       </Fragment>
     )

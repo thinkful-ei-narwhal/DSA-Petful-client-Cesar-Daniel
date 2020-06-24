@@ -18,7 +18,7 @@ export class countdown extends Component {
     const {
      people
     } = this.context;
-    
+
     return (
       <div>
         <p>Thanks For Choosing to Adopt Today!</p>
