@@ -118,6 +118,18 @@ export class Root extends Component {
     this.state.people.dequeue();
     const queue = this.state.people;
     this.setState({people: queue})
+    let number=Math.floor(Math.random() * 2) + 1; 
+    if(number===1){
+      apiService.deleteCat()
+      this.state.cats.dequeue();
+      const queue = this.state.cats;
+      this.setState({cats: queue})
+    }else{
+      apiService.deleteDog()
+      this.state.dogs.dequeue();
+      const queue = this.state.dogs;
+      this.setState({dogs: queue})
+    }
   }
 
   handleAdoptAnimal = (animal) => {

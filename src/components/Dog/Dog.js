@@ -28,7 +28,8 @@ export class Dog extends Component {
         disabled={waiting}
         onClick={(e) => {
           e.preventDefault();
-          handleAdoptAnimal('dog');}}
+          handleAdoptAnimal('dog');
+        }}
         >Adopt Me!</button>
       </div>
     )
