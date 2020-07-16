@@ -6,7 +6,7 @@ class _Node {
   }
 }
 
-class Queue {
+export default class Queue {
   constructor() {
     this.first = null;
     this.last = null;
@@ -54,5 +54,3 @@ class Queue {
     return display.join(', ');
   }
 }
-
-module.exports = Queue;

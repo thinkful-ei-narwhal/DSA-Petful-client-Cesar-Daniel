@@ -5,8 +5,8 @@ import AdoptPage from '../AdoptPage/AdoptPage';
 import ErrorPage from '../ErrorPage/ErrorPage';
 import UserContext from '../../contexts/UserContext';
 import apiService from '../../services/apiService';
+import Queue from '../../queue/Queue';
 
-const Queue = require('../../queue/Queue');
 
 export class Root extends Component {
 
