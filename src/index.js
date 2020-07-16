@@ -5,9 +5,7 @@ import Root from '../src/components/root/Root';
 
 ReactDOM.render(
   <React.StrictMode>
-    
-      <Root />
-    
+      <Root /> 
   </React.StrictMode>,
   document.getElementById('root')
 );
