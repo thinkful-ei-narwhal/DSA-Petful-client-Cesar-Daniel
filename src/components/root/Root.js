@@ -104,6 +104,7 @@ export class Root extends Component {
 
   handleWaiting = () => {
     this.setState({waiting: false})
+    this.setState({savedName: ''})
   }
 
   handleAdopted = () => {
@@ -122,18 +123,18 @@ export class Root extends Component {
 
   handleDeletePerson = () => {
     apiService.deletePerson()
-    this.state.people.dequeue();
+    this.state.people.enqueue(this.state.people.dequeue());
     const queue = this.state.people;
     this.setState({people: queue})
     let number=Math.floor(Math.random() * 2) + 1; 
     if(number===1){
       apiService.deleteCat()
-      this.state.cats.dequeue();
+      this.state.cats.enqueue(this.state.cats.dequeue());
       const queue = this.state.cats;
       this.setState({cats: queue})
     }else{
       apiService.deleteDog()
-      this.state.dogs.dequeue();
+      this.state.dogs.enqueue(this.state.dogs.dequeue());
       const queue = this.state.dogs;
       this.setState({dogs: queue})
     }
@@ -144,7 +145,6 @@ export class Root extends Component {
       apiService.deleteCat()
       let adopted=this.state.cats.show();
       adopted=adopted.data.name;
-      console.log(adopted)
       this.setState({animalAdopted: adopted})
       this.state.cats.dequeue();
       const queue = this.state.cats;
@@ -178,7 +178,8 @@ export class Root extends Component {
         handleWaiting: this.handleWaiting,
         handleAdoptAnimal: this.handleAdoptAnimal,
         handleDeletePerson: this.handleDeletePerson,
-        handleAdopted: this.handleAdopted
+        handleAdopted: this.handleAdopted,
+        addPeople: this.addPeople
       }}>
         <Fragment>
           <main>
