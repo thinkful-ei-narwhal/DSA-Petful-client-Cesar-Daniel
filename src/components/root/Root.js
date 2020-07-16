@@ -84,7 +84,6 @@ export class Root extends Component {
 
   handleUpdatePeople = (n) => {
     
-    
     apiService.postPerson(n)
       .then(data => {
         let pData = data.first;
@@ -101,6 +100,23 @@ export class Root extends Component {
 
     this.setState({waiting: true, submitted: true, savedName: n});
   }
+
+  addPeople = (n) => { 
+    apiService.postPerson(n)
+      .then(data => {
+        let pData = data.first;
+        let pQueue = new Queue();
+        pQueue.enqueue(pData.data)
+        
+        let np = pData.next;
+        while(np) {
+          pQueue.enqueue(np.data)
+          np = np.next
+        }
+        this.setState({people: pQueue})
+      });
+  }
+
 
   handleWaiting = () => {
     this.setState({waiting: false})
@@ -123,6 +139,8 @@ export class Root extends Component {
 
   handleDeletePerson = () => {
     apiService.deletePerson()
+    let name= this.state.people.show()
+    name= name.data;
     this.state.people.enqueue(this.state.people.dequeue());
     const queue = this.state.people;
     this.setState({people: queue})
@@ -137,6 +155,9 @@ export class Root extends Component {
       this.state.dogs.enqueue(this.state.dogs.dequeue());
       const queue = this.state.dogs;
       this.setState({dogs: queue})
+    }
+    if(name !=this.state.savedName){
+      this.addPeople(name);
     }
   }
 
