@@ -6,7 +6,7 @@ export class countdown extends Component {
   static contextType = UserContext;
 
   componentDidMount() {
-    this.interval = setInterval(this.context.peoplePush,10000);
+    this.interval = setInterval(this.context.peoplePush,5000);
   }
 
   componentWillUnmount() {

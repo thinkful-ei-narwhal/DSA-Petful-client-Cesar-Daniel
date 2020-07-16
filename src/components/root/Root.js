@@ -14,8 +14,10 @@ export class Root extends Component {
     cats: new Queue(),
     dogs: new Queue(),
     people: new Queue(),
+    animalAdopted: '',
     submitted: false,
     waiting: true,
+    adopted:false,
     savedName: '',
     na: {value: '', touched: false}
   }
@@ -104,11 +106,16 @@ export class Root extends Component {
     this.setState({waiting: false})
   }
 
+  handleAdopted = () => {
+    this.setState({adopted: true})
+  }
+
   peoplePush = () => {
     const current = this.state.people.first.data;
     if (current !== this.state.savedName) {
       this.handleDeletePerson();
-    } else {
+    }
+    else {
       this.handleWaiting();
     }
   }
@@ -135,6 +142,10 @@ export class Root extends Component {
   handleAdoptAnimal = (animal) => {
     if(animal==='cat'){
       apiService.deleteCat()
+      let adopted=this.state.cats.show();
+      adopted=adopted.data.name;
+      console.log(adopted)
+      this.setState({animalAdopted: adopted})
       this.state.cats.dequeue();
       const queue = this.state.cats;
       this.setState({cats: queue})
@@ -158,13 +169,16 @@ export class Root extends Component {
         submitted: this.state.submitted,
         waiting: this.state.waiting,
         savedName: this.state.savedName,
+        adopted: this.state.adopted,
+        animalAdopted: this.state.animalAdopted,
         validateName: this.validateName,
         setName: this.setName,
         handleUpdatePeople: this.handleUpdatePeople,
         peoplePush: this.peoplePush,
         handleWaiting: this.handleWaiting,
         handleAdoptAnimal: this.handleAdoptAnimal,
-        handleDeletePerson: this.handleDeletePerson
+        handleDeletePerson: this.handleDeletePerson,
+        handleAdopted: this.handleAdopted
       }}>
         <Fragment>
           <main>

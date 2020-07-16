@@ -10,7 +10,9 @@ export class Dog extends Component {
     const {
       waiting,
       dogs,
-      handleAdoptAnimal
+      handleAdoptAnimal,
+      handleAdopted,
+      adopted
     } = this.context;
     const current = dogs.first ? dogs.first.data : {}
 
@@ -25,10 +27,11 @@ export class Dog extends Component {
         <p>Breed: {`${current.breed}`}</p>
         <p>{`${current.name}`}'s Story: {`${current.story}`}</p>
         <button
-        disabled={waiting}
+        disabled={(waiting) || (adopted)}
         onClick={(e) => {
           e.preventDefault();
           handleAdoptAnimal('dog');
+          handleAdopted();
         }}
         >Adopt Me!</button>
       </div>

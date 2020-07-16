@@ -14,7 +14,9 @@ export class AdoptPage extends Component {
 
     const {
       waiting,
-      submitted
+      submitted,
+      adopted,
+      animalAdopted
     } = this.context;
 
     return (
@@ -25,8 +27,9 @@ export class AdoptPage extends Component {
         After that, you'll have to wait your turn before selecting
         your next pet!</p>
         <NameForm/>
-        {submitted && waiting ? <Countdown/> : null}
-        {!waiting ? <p>It's your turn!  You can now adopt!</p> : null}
+        { submitted && waiting? <Countdown/> : null}
+        {!waiting && !adopted ? <p>It's your turn!  You can now adopt!</p> : null}
+        {adopted ? <p>you adopted {animalAdopted}!</p> : null}
         <div className="pet-container">
           <Cat/>
           <Dog/>
