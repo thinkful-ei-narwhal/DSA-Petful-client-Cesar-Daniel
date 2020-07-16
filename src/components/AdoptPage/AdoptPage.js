@@ -9,9 +9,7 @@ export class AdoptPage extends Component {
 
   static contextType = UserContext;
 
-
   render() {
-
     const {
       waiting,
       submitted,

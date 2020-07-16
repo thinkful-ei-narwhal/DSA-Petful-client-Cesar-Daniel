@@ -156,7 +156,7 @@ export class Root extends Component {
       const queue = this.state.dogs;
       this.setState({dogs: queue})
     }
-    if(name !=this.state.savedName){
+    if(name !==this.state.savedName){
       this.addPeople(name);
     }
   }

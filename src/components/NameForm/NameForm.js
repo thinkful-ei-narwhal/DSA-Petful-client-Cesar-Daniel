@@ -27,6 +27,8 @@ export class NameForm extends Component {
         onClick={(e) => {
           e.preventDefault();
           handleUpdatePeople(name.value);
+          name.value='';
+          name.touched= false;
         }}>
           Submit
         </button>
