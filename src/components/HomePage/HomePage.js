@@ -8,7 +8,7 @@ export class HomePage extends Component {
         <h1>Petful</h1>
         <h2>Creating Happy Pet Families since 2020</h2>
 
-        {/* picture here*/}
+        <div className="adoptImg" alt="adopt picture"/>
 
         <p>At Petful, we strive to make sure that the dogs and 
         cats in the most need are those adopted first!  Those
