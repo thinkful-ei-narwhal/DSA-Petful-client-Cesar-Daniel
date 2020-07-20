@@ -1,9 +1,14 @@
 ## Application
 Petful
 
+## Built By
+- Cesar Lenin Morales
+- Daniel Sottile
+
 ## Links
 live site: https://petful-alpha.vercel.app/<br />
-server: https://secret-springs-25473.herokuapp.com
+server: https://secret-springs-25473.herokuapp.com<br />
+Server Repo:https://github.com/thinkful-ei-narwhal/DSA-Petful-api-Cesar-Daniel
 
 ## Using The API
 Currently the API supports GET and POST endpoints.
