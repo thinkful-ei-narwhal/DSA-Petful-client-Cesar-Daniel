@@ -146,12 +146,12 @@ export class Root extends Component {
     this.setState({people: queue})
     let number=Math.floor(Math.random() * 2) + 1; 
     if(number===1){
-      apiService.deleteCat()
+      apiService.deletePet('cat')
       this.state.cats.enqueue(this.state.cats.dequeue());
       const queue = this.state.cats;
       this.setState({cats: queue})
     }else{
-      apiService.deleteDog()
+      apiService.deletePet('dog')
       this.state.dogs.enqueue(this.state.dogs.dequeue());
       const queue = this.state.dogs;
       this.setState({dogs: queue})
@@ -163,7 +163,7 @@ export class Root extends Component {
 
   handleAdoptAnimal = (animal) => {
     if(animal==='cat'){
-      apiService.deleteCat()
+      apiService.deletePet('cat')
       let adopted=this.state.cats.show();
       adopted=adopted.data.name;
       this.setState({animalAdopted: adopted})
@@ -171,7 +171,7 @@ export class Root extends Component {
       const queue = this.state.cats;
       this.setState({cats: queue})
     }else{
-      apiService.deleteDog()
+      apiService.deletePet('dog')
       this.state.dogs.dequeue();
       const queue = this.state.dogs;
       this.setState({dogs: queue})

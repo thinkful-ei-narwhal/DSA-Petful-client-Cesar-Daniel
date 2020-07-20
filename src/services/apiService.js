@@ -28,12 +28,6 @@ const apiService = {
       headers: {
       },
       })
-      .then(res => {
-        if (!res.ok) {
-          error = { code: res.status};
-        }
-        return res.json();
-      })
       .then(data => {
         if (error) {
           error.message = data.message;
@@ -85,32 +79,6 @@ const apiService = {
       method: 'DELETE',
       headers: {
       },
-      })
-      .then(data => {
-        if (error) {
-          error.message = data.message;
-          return Promise.reject(error);
-        }
-        return data})
-  },
-  deleteCat() {
-    let error;
-    return fetch(`${config.API_ENDPOINT}/pets/cat`, {
-      method: 'DELETE',
-      headers: {},
-      })
-      .then(data => {
-        if (error) {
-          error.message = data.message;
-          return Promise.reject(error);
-        }
-        return data})
-  },
-  deleteDog() {
-    let error;
-    return fetch(`${config.API_ENDPOINT}/pets/dog`, {
-      method: 'DELETE',
-      headers: {},
       })
       .then(data => {
         if (error) {
